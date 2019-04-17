@@ -32,7 +32,6 @@ String caller = "DIALING_DEVICE";
 String deviceId = "YOUR_SIPGATE_DEVICE_EXTENSION";
 
 String callerId = "DISPLAYED_CALLER_NUMBER";
-
 String callee = "YOUR_RECIPIENT_PHONE_NUMBER";
 ```
 
@@ -76,7 +75,7 @@ private static HttpResponse<String> sendNewCallRequest(String username, String p
 			.basicAuth(username, password)
 			.body(callObject)
 			.asString();
-	}
+}
 ```
 
 The request body contains the `Call` object, which has four fields: `deviceId`, `caller`, `callee` and `callerId` as specified above.
@@ -87,7 +86,7 @@ public Call(String caller, String callerId, String deviceId, String callee) {
 	this.callerId = callerId;
 	this.deviceId = deviceId;
 	this.callee = callee;
-	}
+}
 ```
 
 We use the java package 'Unirest' for request generation and execution. The `post` method takes as argument the request URL. Headers, authorization header and the request body are generated from `header`, `basicAuth` and `body` methods respectively. The request URL consists of the base URL defined above and the endpoint `/sessions/calls`. The method `basicAuth` from the 'Unirest' package takes credentials and generates the required Basic Auth header (for more information on Basic Auth see our [code example](https://github.com/sipgate/sipgateio-basicauth-java)).
@@ -103,7 +102,7 @@ Unirest.post(baseUrl + "/sessions/calls")
 
 ### Web Phone Extensions
 
-A Web Phone extension consists of one letter followed by a number (e.g. 'e0'). The sipgate API uses the concept of Web Phone extensions to identify devices within your account that are enabled to initiate calls.
+A Web Phone Extension consists of one letter followed by a number (e.g. 'e0'). The sipgate API uses the concept of Web Phone extensions to identify devices within your account that are enabled to initiate calls.
 
 Depending on your needs you can choose between the following phone types:
 

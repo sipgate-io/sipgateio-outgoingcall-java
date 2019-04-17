@@ -19,7 +19,6 @@ public class OutgoingCall {
 		String deviceId = "YOUR_SIPGATE_DEVICE_EXTENSION";
 
 		String callerId = "DISPLAYED_CALLER_NUMBER";
-
 		String callee = "YOUR_RECIPIENT_PHONE_NUMBER";
 
 		Call callObject = new Call(caller, callerId, deviceId, callee);
@@ -28,7 +27,7 @@ public class OutgoingCall {
 			System.out.println("Status: " + response.getStatus());
 			System.out.println("Body: " + response.getBody());
 		} catch (UnirestException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 	}
 
