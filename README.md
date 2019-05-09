@@ -100,6 +100,8 @@ Unirest.post(baseUrl + "/sessions/calls")
 	.asString();
 ```
 
+> If OAuth should be used for authorization instead of Basic Auth we do not use the `.basicAuth(username, password)` mehthod. Instead we set the `Authorization` header to `Bearer` followed by a space and the access token: `.header("Authorization", "Bearer " + accessToken)`. For an example application interacting with the sipgate API using OAuth see our [sipgate.io Java Oauth example](https://github.com/sipgate-io/sipgateio-oauth-java).
+
 ### Web Phone Extensions
 
 A Web Phone Extension consists of one letter followed by a number (e.g. 'e0'). The sipgate API uses the concept of Web Phone extensions to identify devices within your account that are enabled to initiate calls.
