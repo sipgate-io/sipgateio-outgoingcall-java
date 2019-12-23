@@ -9,20 +9,13 @@ For further information regarding the sipgate REST API please visit https://api.
 ### Prerequisites
 
 - JDK 8
-- Maven
 - VoIP client
 
 ### How To Use
 
 Navigate to the project's root directory.
 
-Install dependencies manually or use your IDE's import functionality:
-
-```bash
-$ mvn dependency:resolve
-```
-
-In order to run the code you have to set the following variables in [OutgoingCall.java](./src/main/java/de/sipgate/io/example/outgoingcall/OutgoingCall.java):
+In order to run the code you have to set the following variables in [OutgoingCall.java](src/main/java/sipgateio/outgoingcall/OutgoingCall.java):
 
 ```java
 String username = "YOUR_SIPGATE_EMAIL";
@@ -42,16 +35,8 @@ Use `callee` and `callerId` to set the recipient phone number and the displayed 
 
 Run the application:
 
-Build JAR
-
 ```bash
-$ mvn package
-```
-
-Run the application:
-
-```bash
-$ java -jar target/sipgateio-outgoingcall-java-1.0-SNAPSHOT-jar-with-dependencies.jar
+./gradlew run
 ```
 
 ##### How It Works

@@ -1,4 +1,4 @@
-package de.sipgate.io.example.outgoingcall;
+package sipgateio.outgoingcall;
 
 public class Call {
 	public String deviceId;

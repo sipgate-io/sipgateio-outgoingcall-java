@@ -1,4 +1,4 @@
-package de.sipgate.io.example.outgoingcall;
+package sipgateio.outgoingcall;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
