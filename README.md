@@ -18,8 +18,8 @@ Navigate to the project's root directory.
 In order to run the code you have to set the following variables in [OutgoingCall.java](src/main/java/sipgateio/outgoingcall/OutgoingCall.java):
 
 ```java
-String username = "YOUR_SIPGATE_EMAIL";
-String password = "YOUR_SIPGATE_PASSWORD";
+String tokenId = "YOUR_SIPGATE_TOKEN_ID";
+String token = "YOUR_SIPGATE_TOKEN";
 
 String caller = "DIALING_DEVICE";
 String deviceId = "YOUR_SIPGATE_DEVICE_EXTENSION";
@@ -52,12 +52,12 @@ private static final String baseUrl = "https://api.sipgate.com/v2";
 The API expects request data in JSON format. Thus the `Content-Type` header needs to be set accordingly. You can achieve that by using the `header` method from the `Unirest` library.
 
 ```java
-private static HttpResponse<String> sendNewCallRequest(String username, String password, Call callObject)
+private static HttpResponse<String> sendNewCallRequest(String tokenId, String token, Call callObject)
 	throws UnirestException {
 		return Unirest.post(baseUrl + "/sessions/calls")
 			.header("Accept", "application/json")
 			.header("Content-Type", "application/json")
-			.basicAuth(username, password)
+			.basicAuth(tokenId, token)
 			.body(callObject)
 			.asString();
 }
@@ -78,14 +78,14 @@ We use the java package 'Unirest' for request generation and execution. The `pos
 
 ```java
 Unirest.post(baseUrl + "/sessions/calls")
-	.basicAuth(username, password)
+	.basicAuth(tokenId, token)
 	.header("accept", "application/json")
 	.header("content-type","application/json")
 	.body(callObject)
 	.asString();
 ```
 
-> If OAuth should be used for authorization instead of Basic Auth we do not use the `.basicAuth(username, password)` mehthod. Instead we set the `Authorization` header to `Bearer` followed by a space and the access token: `.header("Authorization", "Bearer " + accessToken)`. For an example application interacting with the sipgate API using OAuth see our [sipgate.io Java Oauth example](https://github.com/sipgate-io/sipgateio-oauth-java).
+> If OAuth should be used for authorization instead of Basic Auth we do not use the `.basicAuth(tokenID, token)` mehthod. Instead we set the `Authorization` header to `Bearer` followed by a space and the access token: `.header("Authorization", "Bearer " + accessToken)`. For an example application interacting with the sipgate API using OAuth see our [sipgate.io Java Oauth example](https://github.com/sipgate-io/sipgateio-oauth-java).
 
 ### Web Phone Extensions
 
@@ -120,7 +120,7 @@ Possible reasons are:
 | reason                                                                                                                            | errorcode |
 | --------------------------------------------------------------------------------------------------------------------------------- | :-------: |
 | bad request (e.g. request body fields are empty or only contain spaces, timestamp is invalid etc.)                                |    400    |
-| username and/or password are wrong                                                                                                |    401    |
+| tokenId and/or token are wrong                                                                                                |    401    |
 | insufficient account balance                                                                                                                        |    402    |
 | no permission to use specified Web Phone extension (e.g. user password must be reset in [web app](https://app.sipgate.com/login)) |    403    |
 | wrong REST API endpoint                                                                                                           |    404    |

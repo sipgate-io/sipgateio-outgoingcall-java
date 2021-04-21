@@ -12,8 +12,8 @@ public class OutgoingCall {
 	public static void main(String[] args) {
 		Unirest.setObjectMapper(new CallObjectMapper());
 
-		String username = "YOUR_SIPGATE_EMAIL";
-		String password = "YOUR_SIPGATE_PASSWORD";
+		String tokenId = "YOUR_SIPGATE_TOKEN_ID";
+		String token = "YOUR_SIPGATE_TOKEN";
 
 		String caller = "DIALING_DEVICE";
 		String deviceId = "YOUR_SIPGATE_DEVICE_EXTENSION";
@@ -23,7 +23,7 @@ public class OutgoingCall {
 
 		Call callObject = new Call(caller, callerId, deviceId, callee);
 		try {
-			HttpResponse<String> response = sendNewCallRequest(username, password, callObject);
+			HttpResponse<String> response = sendNewCallRequest(tokenId, token, callObject);
 			System.out.println("Status: " + response.getStatus());
 			System.out.println("Body: " + response.getBody());
 		} catch (UnirestException e) {
@@ -31,9 +31,9 @@ public class OutgoingCall {
 		}
 	}
 
-	private static HttpResponse<String> sendNewCallRequest(String username, String password, Call callObject) throws UnirestException {
+	private static HttpResponse<String> sendNewCallRequest(String tokenId, String token, Call callObject) throws UnirestException {
 		return Unirest.post(baseUrl + "/sessions/calls")
-				.basicAuth(username, password)
+				.basicAuth(tokenId, token)
 				.header("accept", "application/json")
 				.header("content-type","application/json")
 				.body(callObject)
