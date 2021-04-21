@@ -28,6 +28,12 @@ String callerId = "DISPLAYED_CALLER_NUMBER";
 String callee = "YOUR_RECIPIENT_PHONE_NUMBER";
 ```
 
+The token should have the following scopes:
+
+- `sessions:calls:write`
+
+For more information about personal access token, visit https://www.sipgate.io/rest-api/authentication#personalAccessToken.
+
 The `deviceId` uniquely identifies the phone extension which establishes the phone connection,
 this variable is needed only when the `caller` is a phone number and not a device extension. Further explanation is given in the section [Web Phone Extensions](#web-phone-extensions). Nevertheless you can still use both as device extension, but in this case the `deviceId` will be ignored.
 
@@ -120,8 +126,8 @@ Possible reasons are:
 | reason                                                                                                                            | errorcode |
 | --------------------------------------------------------------------------------------------------------------------------------- | :-------: |
 | bad request (e.g. request body fields are empty or only contain spaces, timestamp is invalid etc.)                                |    400    |
-| tokenId and/or token are wrong                                                                                                |    401    |
-| insufficient account balance                                                                                                                        |    402    |
+| tokenId and/or token are wrong                                                                                                    |    401    |
+| insufficient account balance                                                                                                      |    402    |
 | no permission to use specified Web Phone extension (e.g. user password must be reset in [web app](https://app.sipgate.com/login)) |    403    |
 | wrong REST API endpoint                                                                                                           |    404    |
 | wrong request method                                                                                                              |    405    |
@@ -145,13 +151,13 @@ This project is licensed under **The Unlicense** (see [LICENSE file](./LICENSE))
 This code uses the following external libraries
 
 - unirest:
+
   - Licensed under the [MIT License](https://opensource.org/licenses/MIT)
   - Website: http://unirest.io/java.html
 
 - jackson:
   - Licensed under the [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
   - Website: https://github.com/FasterXML/jackson
-
 
 ---
 
