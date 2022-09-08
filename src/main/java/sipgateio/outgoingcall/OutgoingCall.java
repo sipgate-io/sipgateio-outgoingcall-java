@@ -3,7 +3,7 @@ package sipgateio.outgoingcall;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class OutgoingCall {
 
@@ -11,15 +11,16 @@ public class OutgoingCall {
 
 	public static void main(String[] args) {
 		Unirest.setObjectMapper(new CallObjectMapper());
+		Dotenv dotenv = Dotenv.load();
 
-		String tokenId = "YOUR_SIPGATE_TOKEN_ID";
-		String token = "YOUR_SIPGATE_TOKEN";
+		String tokenId = dotenv.get("TOKEN_ID");
+		String token = dotenv.get("TOKEN");
 
-		String caller = "DIALING_DEVICE";
-		String deviceId = "YOUR_SIPGATE_DEVICE_EXTENSION";
+		String caller = dotenv.get("CALLER");
+		String deviceId = dotenv.get("DEVICE_ID");
 
-		String callerId = "DISPLAYED_CALLER_NUMBER";
-		String callee = "YOUR_RECIPIENT_PHONE_NUMBER";
+		String callerId = dotenv.get("CALLER_ID");
+		String callee = dotenv.get("CALLEE");
 
 		Call callObject = new Call(caller, callerId, deviceId, callee);
 		try {

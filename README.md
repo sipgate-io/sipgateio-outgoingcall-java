@@ -15,18 +15,9 @@ For further information regarding the sipgate REST API please visit https://api.
 
 Navigate to the project's root directory.
 
-In order to run the code you have to set the following variables in [OutgoingCall.java](src/main/java/sipgateio/outgoingcall/OutgoingCall.java):
+Create the `.env` by copying the [`.env.example`](.env.example) and set the values according to the comment above each variable.
 
-```java
-String tokenId = "YOUR_SIPGATE_TOKEN_ID";
-String token = "YOUR_SIPGATE_TOKEN";
 
-String caller = "DIALING_DEVICE";
-String deviceId = "YOUR_SIPGATE_DEVICE_EXTENSION";
-
-String callerId = "DISPLAYED_CALLER_NUMBER";
-String callee = "YOUR_RECIPIENT_PHONE_NUMBER";
-```
 
 The token should have the following scopes:
 
@@ -34,10 +25,10 @@ The token should have the following scopes:
 
 For more information about personal access token, visit https://www.sipgate.io/rest-api/authentication#personalAccessToken.
 
-The `deviceId` uniquely identifies the phone extension which establishes the phone connection,
-this variable is needed only when the `caller` is a phone number and not a device extension. Further explanation is given in the section [Web Phone Extensions](#web-phone-extensions). Nevertheless you can still use both as device extension, but in this case the `deviceId` will be ignored.
+The `DEVICE_ID` uniquely identifies the phone extension which establishes the phone connection,
+this variable is needed only when the `CALLER` is a phone number and not a device extension. Further explanation is given in the section [Web Phone Extensions](#web-phone-extensions). Nevertheless you can still use both as device extension, but in this case the `DEVICE_ID` will be ignored.
 
-Use `callee` and `callerId` to set the recipient phone number and the displayed caller number respectively.
+Use `CALLEE` and `CALLER_ID` to set the recipient phone number and the displayed caller number respectively.
 
 Run the application:
 
